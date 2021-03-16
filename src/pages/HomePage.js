@@ -8,6 +8,18 @@ import randomCocktailData  from "../data/RandomCocktail";
 
 const HomePage = () => {
     const [randomCocktail, setRandomCocktail] = useState(randomCocktailData.drinks[0]);
+    const barracudaIngredients = [
+        "rum",
+        "vodka",
+        "orange juice",
+        "pineapple"
+    ]
+
+    const dryMartiniIngredients = [
+        "Gin",
+        "Dry Vermouth",
+        "Olive"
+    ]
 
     // useEffect(() => {
     //     _getRandomCocktail()
@@ -37,10 +49,20 @@ const HomePage = () => {
             <main className="main">
                 <div className="row">
                     <div className="col-1-of-2">
-                        <RandomDrinkCard />
+                        <RandomDrinkCard 
+                            name="Barracuda"
+                            number="1"
+                            ingredients={barracudaIngredients}
+                            description="This is a really good drink"
+                        />
                     </div>
                     <div className="col-1-of-2">
-                        <RandomDrinkCard />
+                        <RandomDrinkCard 
+                            name="Old Fashioned"
+                            number="2"
+                            ingredients={dryMartiniIngredients}
+                            description="This is another good drink"
+                        />
                     </div>
                 </div>
             </main>
