@@ -27,7 +27,7 @@ body {
 .heading-primary--main {
     display: block;
     font-size: 5rem;
-    font-weight: 400;
+    font-weight: 600;
     letter-spacing: 1rem;
     margin-bottom: 3rem;
     animation: moveInLeft 1s ease-out; 
@@ -281,11 +281,11 @@ text-align: center; }
 }
 
 .card__picture--1 {
-    background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(https:\/\/www.thecocktaildb.com\/images\/media\/drink\/jwmr1x1504372337.jpg); 
+    background-image: url(https:\/\/www.thecocktaildb.com\/images\/media\/drink\/jwmr1x1504372337.jpg); 
 }
 
 .card__picture--2 {
-    background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(https:\/\/www.thecocktaildb.com\/images\/media\/drink\/6ck9yi1589574317.jpg); 
+    background-image: url(https:\/\/www.thecocktaildb.com\/images\/media\/drink\/6ck9yi1589574317.jpg); 
 }
 
 .card__heading {
@@ -317,6 +317,7 @@ text-align: center; }
 .card__details {
     padding: 3rem;
     color: #15305E;
+    font-weight: 600;
 }
 
 .card__details ul {
@@ -328,7 +329,7 @@ text-align: center; }
 .card__details ul li {
     text-align: center;
     font-size: 1.5rem;
-    padding: 1rem; 
+    padding: 2rem; 
 }
 
 .card__details ul li:not(:last-child) {
