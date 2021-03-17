@@ -98,7 +98,12 @@ body {
     .header__logo-box {
         position: absolute;
         top: 4rem;
-        left: 4rem; }
+        left: 4rem; 
+        background-color: white;
+    }
+    .header__logo {
+        height: 7rem;
+    }
     .header__edit-box {
         position: absolute;
         top: 4rem;
@@ -278,14 +283,6 @@ text-align: center; }
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     border-top-left-radius: 3px;
     border-top-right-radius: 3px; 
-}
-
-.card__picture--1 {
-    background-image: url(https:\/\/www.thecocktaildb.com\/images\/media\/drink\/jwmr1x1504372337.jpg); 
-}
-
-.card__picture--2 {
-    background-image: url(https:\/\/www.thecocktaildb.com\/images\/media\/drink\/6ck9yi1589574317.jpg); 
 }
 
 .card__heading {
