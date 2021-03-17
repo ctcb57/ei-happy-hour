@@ -3,66 +3,66 @@ import React, { useEffect, useState } from 'react';
 import { _getRandomCocktail } from "../api/cocktailDb";
 
 import RandomDrinkCard from "../components/homePage/RandomDrinkCard";
+import Header from "../components/base/Header";
+import LargeButton from "../components/base/LargeButton";
+import LoadingSpinner from "../components/base/LoadingSpinner";
 
 import randomCocktailData  from "../data/RandomCocktail";
 
 const HomePage = () => {
-    const [randomCocktail, setRandomCocktail] = useState(randomCocktailData.drinks[0]);
-    const barracudaIngredients = [
-        "rum",
-        "vodka",
-        "orange juice",
-        "pineapple"
-    ]
+    const [randomCocktail1, setRandomCocktail1] = useState({});
+    const [randomCocktail2, setRandomCocktail2] = useState({})
+    const [isLoading, setLoading] = useState(true);
 
-    const dryMartiniIngredients = [
-        "Gin",
-        "Dry Vermouth",
-        "Olive"
-    ]
+    useEffect(() => {
+        _getRandomCocktail()
+            .then((response) => {
+                setRandomCocktail1(response.drinks[0]);
+            })
+            .catch((err) => {})
+        
+        _getRandomCocktail()
+            .then((response) => {
+                setRandomCocktail2(response.drinks[0]);
+            })
+            .catch((err) => {})
+        setLoading(false);
+    },[])
 
-    // useEffect(() => {
-    //     _getRandomCocktail()
-    //         .then((response) => {
-    //             console.log(response);
-    //         })
-    //         .catch((err) => {})
-    // })
-    console.log(randomCocktail);
+    console.log(randomCocktail1)
+    console.log(randomCocktail2)
     
     return (
         <>
-            <header className="header">
-                <div className="header__logo-box">
-                    <a href="">Home</a>
-                </div>
-                <div className="header__text-box">
-                    <h1 className="heading-primary">
-                        <span className="heading-primary--main">Expert Institute</span>
-                        <span className="heading-primary--sub">Happy Hour</span>
-                    </h1>
-
-                    <a href="" className="btn btn--white btn--animated">Search Our Cocktails</a>
-                </div>
-            </header>
+            <Header />
+            <LargeButton 
+                message="Search Our Cocktails"
+                link=""
+            />
 
             <main className="main">
                 <div className="row">
                     <div className="col-1-of-2">
+                        {isLoading ? 
+                        <LoadingSpinner isLoading={isLoading} /> 
+                        : 
                         <RandomDrinkCard 
-                            name="Barracuda"
+                            drinkId={randomCocktail1.idDrink}
                             number="1"
-                            ingredients={barracudaIngredients}
-                            description="This is a really good drink"
+                            drink={randomCocktail1}
                         />
+                        }
                     </div>
                     <div className="col-1-of-2">
+                        {isLoading ? 
+                        <LoadingSpinner isLoading={isLoading} /> 
+                        : 
                         <RandomDrinkCard 
-                            name="Old Fashioned"
+                            drinkId={randomCocktail2.idDrink}
                             number="2"
-                            ingredients={dryMartiniIngredients}
-                            description="This is another good drink"
+                            drink={randomCocktail2}
                         />
+                        }
                     </div>
                 </div>
             </main>
