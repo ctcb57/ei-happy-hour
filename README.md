@@ -1,4 +1,7 @@
 # Quick Start Guide By Charlie Clark
+
+# React Project
+
 1.) Clone this repository to your local directory with command: git clone "enter url"
 
 2.) Ensure you have Node and npm installed on your local machine
@@ -8,6 +11,9 @@
 4.) While in the project directory, run command: npm start
 
 5.) ENJOY THE WONDERFUL WEBSITE!
+
+# Cypress Testing
+This project uses Cypress to accomplish End to End Testing.  In order to run tests, run the command: npm cypress.  This will bring up the integration testing folder.  When you click on one of the test files (ex: api.spec.js) it will run the tests within the Cypress Testing Suite.
 
 # Getting Started with Create React App
 
