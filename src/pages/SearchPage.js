@@ -6,6 +6,7 @@ import LargeButton from "../components/base/LargeButton";
 import SearchFilter from '../components/searchPage./SearchFilter';
 import LoadingSpinner from "../components/base/LoadingSpinner";
 import DrinkCard from "../components/searchPage./DrinkCard";
+import ErrorMessage from "../components/ErrorMessage";
 
 import { _getCocktailByName, _getCocktailByFirstLetter, _getCocktailByIngredient} from "../api/cocktailDb";
 
@@ -24,6 +25,7 @@ const SearchPage = () => {
                 .then((response) => {
                     setResults(response.drinks);
                     setLoading(false);
+                    setSubmitted(true);
                 })
                 .catch((err) => {});
         }
@@ -31,12 +33,14 @@ const SearchPage = () => {
             if (search.length > 1){
                 setError(true);
                 setErrorMessage("You entered too many letters.  Please search by one letter");
+                setLoading(false);
                 return;
             }
             _getCocktailByFirstLetter(search)
                 .then((response) => {
                     setResults(response.drinks);
                     setLoading(false);
+                    setSubmitted(true);
                 })
                 .catch((err) => {})
         }
@@ -45,15 +49,17 @@ const SearchPage = () => {
                 .then((response) => {
                     setResults(response.drinks);
                     setLoading(false);
+                    setSubmitted(true);
                 })
                 .catch((err) => {});
         }
+        setError(false);
+        setErrorMessage("");
     }, [search, searchType])
 
     const handleSearch = (search, searchType) => {
         setSearch(search);
         setSearchType(searchType);
-        setSubmitted(true);
     }
 
     return (
@@ -77,6 +83,15 @@ const SearchPage = () => {
             />
             :
             ""}
+            {isError ? 
+            <div>
+                <ErrorMessage 
+                    isError={isError}
+                    message={errorMessage}
+                />
+            </div> :
+            ""} 
+            
             {results.map((drink, index) => (
                 <DrinkCard drink={drink} key={drink.idDrink} />
             ))}

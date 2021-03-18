@@ -4,7 +4,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Select, { createFilter } from "react-select";
 
-const SearchFilter = ({ value, searchType, onChange }) => {
+import ErrorMessage from "../../components/ErrorMessage";
+
+const SearchFilter = ({ value, searchType, onChange, error, errorMessage }) => {
     const [lastSearch, setLastSearch] = useState(value);
     const [selectedOption, setSelectedOption] = useState({ value: "", label: "Select your option..."});
     const searchOptions = [
@@ -77,8 +79,13 @@ const SearchFilter = ({ value, searchType, onChange }) => {
                     : 
                     ""
                     }
+                    
                     {selectedOption.value ? 
                     <div className="uk-grid-small uk-child-width-expand@s" data-uk-grid>
+                        <ErrorMessage 
+                            isError={error}
+                            message={errorMessage}
+                        />
                         <div>
                             <button 
                                 type="submit"

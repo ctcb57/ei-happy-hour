@@ -217,6 +217,22 @@ body {
   text-align: center;
 }
 
+.footer__content--text,
+.footer__content--text:link,
+.footer__content--text:visited {
+  color: #f7f7f7 !important;
+  text-decoration: none;
+}
+
+.footer__content--text:hover {
+  text-decoration: none;
+  transform: translateY(2px);
+  background-color: white;
+  color: black !important;
+  border-radius: 5rem;
+  transform: scaleX(1.4) scaleY(1.6);
+}
+
 .main {
   padding: 3rem 0;
 }
