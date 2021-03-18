@@ -28,18 +28,14 @@ const HomePage = () => {
             .catch((err) => {})
         setLoading(false);
     },[])
-
-    console.log(randomCocktail1)
-    console.log(randomCocktail2)
     
     return (
         <>
             <Header />
             <LargeButton 
                 message="Search Our Cocktails"
-                link=""
+                link="/search"
             />
-
             <main className="main">
                 <div className="row">
                     <div className="col-1-of-2">
