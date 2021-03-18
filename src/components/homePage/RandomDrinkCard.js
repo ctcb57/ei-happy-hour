@@ -25,7 +25,7 @@ const RandomDrinkCard = ({drinkId, drink, number}) => {
                             <p className="card__detail-only">{drink.strAlcoholic}</p>
                             <p className="card__detail-only">Glass: {drink.strGlass}</p>
                         </div>
-                        <a href="" className="btn btn--white">Details</a>
+                        <a href={`/search/${drinkId}`} className="btn btn--white">Details</a>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ import { _getRandomCocktail } from "../api/cocktailDb";
 
 import RandomDrinkCard from "../components/homePage/RandomDrinkCard";
 import Header from "../components/base/Header";
+import Footer from "../components/base/Footer";
 import LargeButton from "../components/base/LargeButton";
 import LoadingSpinner from "../components/base/LoadingSpinner";
 
@@ -62,26 +63,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </main>
-
-            <footer className="footer">
-                <div className="row">
-                <div className="col-1-of-3">
-                        <div className="footer__content">
-                            <p>Our Favorites</p>
-                        </div>
-                    </div>
-                    <div className="col-1-of-3">
-                        <div className="footer__content">
-                            <p>About Us</p>
-                        </div>
-                    </div>
-                    <div className="col-1-of-3">
-                        <div className="footer__content">
-                            <p>Contact Us</p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </>
     )
 }

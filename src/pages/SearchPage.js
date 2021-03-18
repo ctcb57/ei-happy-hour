@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import Header from "../components/base/Header";
+import Footer from "../components/base/Footer";
+import LargeButton from "../components/base/LargeButton";
 import SearchFilter from '../components/searchPage./SearchFilter';
 import LoadingSpinner from "../components/base/LoadingSpinner";
 import DrinkCard from "../components/searchPage./DrinkCard";
@@ -51,18 +53,24 @@ const SearchPage = () => {
     const handleSearch = (search, searchType) => {
         setSearch(search);
         setSearchType(searchType);
+        setSubmitted(true);
     }
-
-    console.log(results);
 
     return (
         <>
             <Header />
+            {submitted ?
+            <LargeButton 
+                message={"Search Again"}
+                link={"/search"}
+            />
+            :
             <SearchFilter 
                 value={search}
                 searchType={searchType}
                 onChange={handleSearch}
             />
+            }
             {isLoading && results.length < 1 && search.length > 0 ? 
             <LoadingSpinner 
                 isLoading={isLoading}
@@ -72,6 +80,9 @@ const SearchPage = () => {
             {results.map((drink, index) => (
                 <DrinkCard drink={drink} key={drink.idDrink} />
             ))}
+            <br/>
+            <br/>
+            <Footer />
         </>
     )
 }

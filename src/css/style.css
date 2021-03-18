@@ -116,11 +116,11 @@ body {
   text-align: center;
 }
 .large-button {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 .header__logo-box {
   position: absolute;
@@ -278,12 +278,13 @@ body {
 }
 
 .btn--purple {
-    background-color: #1733e7;
-    color: #fff;
+  background-color: #1733e7;
+  color: #fff;
 }
 
 .btn--purple::after {
-    background-color: #1733e7;
+  background-color: #1733e7;
+  color: #fff;
 }
 
 .btn--white::after {
@@ -451,4 +452,9 @@ body {
 
 .no-round {
     border-radius: 0em !important;
+}
+
+.details__sub-title {
+  font-size: 2rem;
+  text-align: center;
 }

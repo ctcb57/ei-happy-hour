@@ -18,7 +18,7 @@ const DrinkCard = ({ drink }) => {
                         data-uk-cover
                         data-uk-img=""
                     />
-                    <canvas width="600" width="400"></canvas>
+                    <canvas width="400" height="600"></canvas>
                 </div>
                 <div className="uk-card-body uk-width-1-5">&nbsp;</div>
                 <div className="uk-card-body uk-width-2-5">

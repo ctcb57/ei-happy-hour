@@ -15,3 +15,7 @@ export const _getCocktailByFirstLetter = (letter) => {
 export const _getCocktailByIngredient = (ingredient) => {
     return Axios.get(`filter.php?i=${ingredient}`);
 }
+
+export const _getCocktailById = (drinkId) => {
+    return Axios.get(`lookup.php?i=${drinkId}`);
+}
