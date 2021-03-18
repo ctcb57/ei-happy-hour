@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Header from "../components/base/Header";
 import SearchFilter from '../components/searchPage./SearchFilter';
 import LoadingSpinner from "../components/base/LoadingSpinner";
+import DrinkCard from "../components/searchPage./DrinkCard";
 
 import { _getCocktailByName, _getCocktailByFirstLetter, _getCocktailByIngredient} from "../api/cocktailDb";
 
@@ -13,6 +14,7 @@ const SearchPage = () => {
     const [isError, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [isLoading, setLoading] = useState(true);
+    const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
         if (searchType === "Drink Name"){
@@ -67,6 +69,9 @@ const SearchPage = () => {
             />
             :
             ""}
+            {results.map((drink, index) => (
+                <DrinkCard drink={drink} key={drink.idDrink} />
+            ))}
         </>
     )
 }

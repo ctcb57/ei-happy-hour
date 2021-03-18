@@ -436,3 +436,19 @@ body {
 .search__form--button {
   font-size: 2rem;
 }
+
+.flat-card {
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.08);
+}
+
+.flat-card:hover {
+    background-color: var(--oc-gray-1);
+}
+
+.border-bottom {
+    border-bottom: solid 1px var(--oc-gray-1);
+}
+
+.no-round {
+    border-radius: 0em !important;
+}
