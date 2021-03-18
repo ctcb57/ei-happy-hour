@@ -3,8 +3,8 @@ import React from 'react';
 const LargeButton = ({message, link}) => {
     return (
         <>
-            <div className="header__text-box">
-                <a href={`${link}`} className="btn btn--white btn--animated">{message}</a>
+            <div className="large-button">
+                <a href={`${link}`} className="btn btn--purple btn--animated">{message}</a>
             </div>
         </>
     )
