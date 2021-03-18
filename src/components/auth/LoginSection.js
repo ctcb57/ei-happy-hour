@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
 
 import ErrorMessage from "../ErrorMessage";
+import { signInWithGoogle } from "../../Firebase";
 
 const LoginSection = ({ email, password, handleChange }) => {
     const [localEmail, setLocalEmail] = useState(email);
     const [localPassword, setLocalPassword] = useState(password);
     const [isError, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const signInWithEmailAndPasswordHandler = (event, localEmail, password) => {
+        event.preventDefault();
+    }
+
+    const onChangeHandler = (event) => {
+        const { name, value } = event.currentTarget;
+
+        if (name === 'userEmail'){
+            setLocalEmail(value);
+        }
+
+        else if (name === 'userPassword') {
+            setLocalPassword(value);
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,7 +40,7 @@ const LoginSection = ({ email, password, handleChange }) => {
             <div className="uk-child-width-1-1 uk-child-width-expand@s" data-uk-grid>
                 <div>
                     <h3 className="uk-card-title login__info-header">
-                        EI Happy Hour
+                        Exper Institute Happy Hour
                     </h3>
                     <h5 className="login__info-sub-header">
                         Powered by Charles Clark
@@ -45,7 +61,7 @@ const LoginSection = ({ email, password, handleChange }) => {
                                 className="uk-input"
                                 type="text"
                                 value={localEmail}
-                                onChange={(e) => setLocalEmail(e.target.value)}
+                                onChange={(e) => onChangeHandler(e)}
                             />
                         </div>
                         <div className="uk-margin-top">
@@ -57,16 +73,17 @@ const LoginSection = ({ email, password, handleChange }) => {
                                 className="uk-input"
                                 type="password"
                                 value={localPassword}
-                                onChange={(e) => setLocalPassword(e.target.value)}
+                                onChange={(e) => onChangeHandler(e)}
                             />
                         </div>
                         <ErrorMessage 
                             isError={isError}
                             message={errorMessage}
                         />
+                        <br/>
                         <div>
                             <button 
-                                className="btn btn-login btn--purple"
+                                className="uk-button uk-button-primary uk-width-1-1 search__form--button"
                                 type="submit"
                                 onClick={(e) => handleSubmit(e)}
                             >
@@ -74,7 +91,19 @@ const LoginSection = ({ email, password, handleChange }) => {
                             </button>  
                         </div>
                     </form>
-                    
+                    <br/>
+                    <hr/>
+                    <div className="uk-grid-small uk-child-width-expand@s" data-uk-grid>
+                        <div>
+                            <button 
+                                type="submit"
+                                className="uk-button uk-button-primary uk-width-1-1 search__form--button"
+                                onClick={() => signInWithGoogle()}
+                            >
+                                Log In With Google
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
