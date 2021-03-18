@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+import Navigation from "./Navigation";
+
 const Header = () => {
     return (
-        <>
+        <>  
+            <Navigation />
             <header className="header">
                 <div className="header__logo-box">
                     <Link to={"/"}>

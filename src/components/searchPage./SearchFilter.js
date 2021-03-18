@@ -41,7 +41,7 @@ const SearchFilter = ({ value, searchType, onChange, error, errorMessage }) => {
                     Find Your Favorite Drink
                 </h3>
                 <form className="uk-margin-bottom">
-                    <div className="uk-gird-small uk-child-width-1-1 uk-margin-bottom" data-uk-grid>
+                    <div className="uk-grid-small uk-child-width-1-1 uk-margin-bottom" data-uk-grid>
                         <label className="uk-form-label search__form--label">Search Category</label>
                         <Select 
                             filterOption={createFilter({ ignoreAccents: false })}
@@ -82,10 +82,6 @@ const SearchFilter = ({ value, searchType, onChange, error, errorMessage }) => {
                     
                     {selectedOption.value ? 
                     <div className="uk-grid-small uk-child-width-expand@s" data-uk-grid>
-                        <ErrorMessage 
-                            isError={error}
-                            message={errorMessage}
-                        />
                         <div>
                             <button 
                                 type="submit"
