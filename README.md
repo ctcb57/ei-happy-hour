@@ -1,7 +1,7 @@
 # Quick Start Guide By Charlie Clark
 1.) Clone this repository to your local directory with command: git clone "enter url"
 
-2.) Ensure you have Node install on your local machine
+2.) Ensure you have Node and npm installed on your local machine
 
 3.) While in the project directory, run command: npm install
 
