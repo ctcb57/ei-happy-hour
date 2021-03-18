@@ -1,38 +1,50 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import ErrorMessage from "../ErrorMessage";
-import { signInWithGoogle } from "../../Firebase";
+import { signInWithGoogle, auth } from "../../Firebase";
 
-const LoginSection = ({ email, password, handleChange }) => {
-    const [localEmail, setLocalEmail] = useState(email);
-    const [localPassword, setLocalPassword] = useState(password);
+const LoginSection = ({ handleChange }) => {
+    let history = useHistory();
+    const [localEmail, setLocalEmail] = useState("");
+    const [localPassword, setLocalPassword] = useState("");
     const [isError, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const signInWithEmailAndPasswordHandler = (event, localEmail, password) => {
+
+    const signInWithEmailAndPasswordHandler = (event, email, password) => {
+        setError(false)
+        setErrorMessage("")
         event.preventDefault();
-    }
-
-    const onChangeHandler = (event) => {
-        const { name, value } = event.currentTarget;
-
-        if (name === 'userEmail'){
-            setLocalEmail(value);
+        auth.signInWithEmailAndPassword(email, password)
+        .then((response) => {
+            console.log(response)
+            history.push("/")
+        })
+        .catch(error => {
+            setError(true);
+            setErrorMessage("Error logging in.  Try again or re-register.")
+            setLocalEmail("")
+            setLocalPassword("")
+            console.error("Error signing in with password and email", error);
+          });
         }
-
-        else if (name === 'userPassword') {
-            setLocalPassword(value);
-        }
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setError(false);
         setErrorMessage("");
-        if (!email.length || !password.length) {
+        if (!localEmail.length || !localPassword.length) {
             setError(true);
             setErrorMessage("You must enter both an email and password.")
         }
         handleChange(localEmail, localPassword);
+        signInWithEmailAndPasswordHandler(e, localEmail, localPassword)
+    }
+
+    const googleLogIn = (e) => {
+        e.preventDefault();
+        signInWithGoogle()
+        history.push("/")
     }
 
     return (
@@ -40,7 +52,7 @@ const LoginSection = ({ email, password, handleChange }) => {
             <div className="uk-child-width-1-1 uk-child-width-expand@s" data-uk-grid>
                 <div>
                     <h3 className="uk-card-title login__info-header">
-                        Exper Institute Happy Hour
+                        Expert Institute Happy Hour
                     </h3>
                     <h5 className="login__info-sub-header">
                         Powered by Charles Clark
@@ -61,7 +73,7 @@ const LoginSection = ({ email, password, handleChange }) => {
                                 className="uk-input"
                                 type="text"
                                 value={localEmail}
-                                onChange={(e) => onChangeHandler(e)}
+                                onChange={(e) => setLocalEmail(e.target.value)}
                             />
                         </div>
                         <div className="uk-margin-top">
@@ -73,7 +85,7 @@ const LoginSection = ({ email, password, handleChange }) => {
                                 className="uk-input"
                                 type="password"
                                 value={localPassword}
-                                onChange={(e) => onChangeHandler(e)}
+                                onChange={(e) => setLocalPassword(e.target.value)}
                             />
                         </div>
                         <ErrorMessage 
@@ -85,7 +97,7 @@ const LoginSection = ({ email, password, handleChange }) => {
                             <button 
                                 className="uk-button uk-button-primary uk-width-1-1 search__form--button"
                                 type="submit"
-                                onClick={(e) => handleSubmit(e)}
+                                onClick={(e) => signInWithEmailAndPasswordHandler(e, localEmail, localPassword)}
                             >
                                 Sign In 
                             </button>  
@@ -98,10 +110,25 @@ const LoginSection = ({ email, password, handleChange }) => {
                             <button 
                                 type="submit"
                                 className="uk-button uk-button-primary uk-width-1-1 search__form--button"
-                                onClick={() => signInWithGoogle()}
+                                onClick={(e) => googleLogIn(e)}
                             >
                                 Log In With Google
                             </button>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div className="uk-grid-small uk-child-width-expand@s" data-uk-grid>
+                        <div>
+                            <p>Don't have an account? </p>
+                            <span>
+                                <a href="/signup">Sign up Here!</a>
+                            </span>
+                        </div>
+                        <div>
+                            <p>Forgot your password?</p>
+                            <span>
+                                <a href="/password-reset">Click Here!</a>
+                            </span>
                         </div>
                     </div>
                 </div>

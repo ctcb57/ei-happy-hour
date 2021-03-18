@@ -1,5 +1,5 @@
 import React, { Component, createContext } from "react";
-import { auth } from "../Firebase";
+import { auth, generateUserDocument } from "../Firebase";
 
 export const UserContext = createContext({ user: null });
 class UserProvider extends Component {
@@ -8,10 +8,12 @@ class UserProvider extends Component {
   };
 
   componentDidMount = () => {
-    auth.onAuthStateChanged(userAuth => {
-      this.setState({ user: userAuth});
+    auth.onAuthStateChanged(async userAuth => {
+        const user = await generateUserDocument(userAuth);
+        this.setState({ user });
     });
   };
+
   render() {
     return (
       <UserContext.Provider value={this.state.user}>
@@ -20,4 +22,5 @@ class UserProvider extends Component {
     );
   }
 }
+
 export default UserProvider;

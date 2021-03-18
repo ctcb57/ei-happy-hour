@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { UserContext } from "../providers/UserProvider";
 
 import { _getRandomCocktail } from "../api/cocktailDb";
 
@@ -8,12 +9,11 @@ import Footer from "../components/base/Footer";
 import LargeButton from "../components/base/LargeButton";
 import LoadingSpinner from "../components/base/LoadingSpinner";
 
-import randomCocktailData  from "../data/RandomCocktail";
-
 const HomePage = () => {
     const [randomCocktail1, setRandomCocktail1] = useState({});
     const [randomCocktail2, setRandomCocktail2] = useState({})
     const [isLoading, setLoading] = useState(true);
+    const user = useContext(UserContext);
 
     useEffect(() => {
         _getRandomCocktail()
@@ -28,7 +28,7 @@ const HomePage = () => {
             })
             .catch((err) => {})
         setLoading(false);
-    },[])
+    },[user])
     
     return (
         <>

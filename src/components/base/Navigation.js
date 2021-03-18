@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserContext } from "../../providers/UserProvider";
 
 const Navigation = () => {
-    const [signedIn, setSignedIn] = useState(false);
+    const user = useContext(UserContext);
 
     return (
         <>
@@ -16,9 +17,13 @@ const Navigation = () => {
 
                 <nav className="navigation__nav">
                     <ul className="navigation__list">
-                        <li className="navigation__item"><a href="/search" class="navigation__link"><span>01</span>Search Cocktails</a></li>
-                        {signedIn ? 
-                        <li className="navigation__item"><a href="#" class="navigation__link"><span>02</span>Log Out</a></li>
+                        <li className="navigation__item">
+                            <a href="/search" class="navigation__link"><span>01</span>Search Cocktails</a>
+                        </li>
+                        {user ? 
+                        <li className="navigation__item"><a href="/logout" className="navigation__link">
+                            <span>02</span>Log Out</a>
+                        </li>
                         :
                         <li className="navigation__item"><a href="/login" class="navigation__link"><span>02</span>Sign In</a></li>
                         } 

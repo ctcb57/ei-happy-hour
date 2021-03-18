@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyDwVwoo-IqWWOgw93AbiOenXmTKhdZMDv0",
     authDomain: "ei-happy-hour.firebaseapp.com",
@@ -16,7 +17,15 @@ firebase.initializeApp(firebaseConfig);
 
 const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => {
-auth.signInWithPopup(provider);
+    auth.signInWithPopup(provider);
+}
+
+export const logOut = () => {
+    auth.signOut().then(() => {
+        console.log('signed out')
+    }).catch((err) => {
+        console.log(err.message)
+    })
 }
 
 export const auth = firebase.auth();
@@ -27,12 +36,11 @@ export const generateUserDocument = async (user, additionalData) => {
     const userRef = firestore.doc(`users/${user.uid}`);
     const snapshot = await userRef.get();
     if (!snapshot.exists) {
-      const { email, displayName, photoURL } = user;
+      const { email, displayName } = user;
       try {
         await userRef.set({
           displayName,
           email,
-          photoURL,
           ...additionalData
         });
       } catch (error) {
@@ -53,6 +61,8 @@ export const generateUserDocument = async (user, additionalData) => {
       console.error("Error fetching user", error);
     }
   };
+
+
 
   
 
