@@ -20,9 +20,4 @@ describe('Form', () => {
             .should('have.value', "Old Fashioned")
     })
     
-    it('allows typing', () => {
-        cy.get('drink-search')
-            .type('Old')
-            .should('have.value', 'Old')
-    })
 })
